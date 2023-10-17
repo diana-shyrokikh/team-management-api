@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -17,6 +18,12 @@ class Team(models.Model):
     type = models.ForeignKey(
         to=Type,
         related_name="teams",
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    leader = models.OneToOneField(
+        to=get_user_model(),
+        related_name="task",
         on_delete=models.SET_NULL,
         null=True
     )
