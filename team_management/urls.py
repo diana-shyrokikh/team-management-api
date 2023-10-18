@@ -26,6 +26,10 @@ urlpatterns = [
         "api/v1/team/", include(
             "team.urls", namespace="team"
         ),
-
+    ),
+    path(
+        "api/v1/user/", include(
+            "user.urls", namespace="user"
+        ),
     ),
 ]
