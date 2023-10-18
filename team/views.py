@@ -22,7 +22,7 @@ class TypeView(viewsets.ModelViewSet):
 class TeamView(viewsets.ModelViewSet):
     queryset = Team.objects.select_related(
         "leader", "type"
-    ).prefetch_related("members")
+    ).prefetch_related("members", "tasks")
 
     def get_serializer_class(self):
         if self.action == "list":
