@@ -22,8 +22,9 @@ def validate_name(
 
 def validate_leader(
         leader: get_user_model(),
+        team_name: str
 ) -> get_user_model() | ValidationError:
-    if leader.team:
+    if leader.team and leader.team.name != team_name:
         raise ValidationError({
             f"leader":
                 f"The user cannot be the leader and "
@@ -36,14 +37,16 @@ def validate_leader(
 
 def validate_members(
         members: list[get_user_model()],
+        team_name: str
 ) -> get_user_model() | ValidationError:
     for member in members:
         if member.is_leader:
-            raise ValidationError({
-                f"members":
-                    f"The {member.email} cannot be a team member "
-                    f"because the user is the leader of another team"
+            if team_name != member.team.name:
+                raise ValidationError({
+                    f"members":
+                        f"The {member.email} cannot be a team member "
+                        f"because the user is the leader of another team"
 
-            })
+                })
 
     return members
