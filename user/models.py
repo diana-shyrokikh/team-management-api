@@ -5,8 +5,6 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils.translation import gettext as _
 
-from team.models import Team
-
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -63,7 +61,7 @@ class User(AbstractUser):
         _("email address"), unique=True
     )
     team = models.ForeignKey(
-        to=Team,
+        "team.Team",
         related_name="users",
         on_delete=models.SET_NULL,
         null=True

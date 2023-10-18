@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -22,7 +21,7 @@ class Team(models.Model):
         null=True
     )
     leader = models.OneToOneField(
-        to=get_user_model(),
+        "user.User",
         related_name="task",
         on_delete=models.SET_NULL,
         null=True
@@ -47,7 +46,9 @@ class Task(models.Model):
     )
     description = models.TextField()
     status = models.CharField(
-        max_length=63, choices=TYPES
+        max_length=63,
+        choices=TYPES,
+        default="In Progress"
     )
     team = models.ForeignKey(
         to=Team,
