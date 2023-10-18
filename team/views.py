@@ -11,6 +11,7 @@ from team.serializers import (
     TaskSerializer,
     TaskDetailSerializer,
     TeamDetailSerializer,
+    TeamCreateUpdateSerializer,
 )
 
 
@@ -27,6 +28,8 @@ class TeamView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "list":
             return TeamSerializer
+        if self.action in ("create", "update"):
+            return TeamCreateUpdateSerializer
 
         return TeamDetailSerializer
 
