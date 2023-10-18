@@ -42,7 +42,7 @@ class Task(models.Model):
     )
 
     name = models.CharField(
-        max_length=63
+        max_length=63, unique=True
     )
     description = models.TextField()
     status = models.CharField(
