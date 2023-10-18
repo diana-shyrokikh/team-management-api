@@ -3,10 +3,13 @@ from rest_framework import viewsets
 from team.models import (
     Type,
     Team,
+    Task,
 )
 from team.serializers import (
     TypeSerializer,
     TeamSerializer,
+    TaskSerializer,
+    TaskDetailSerializer,
 )
 
 
@@ -20,3 +23,16 @@ class TeamView(viewsets.ModelViewSet):
         "leader", "type"
     ).prefetch_related("members")
     serializer_class = TeamSerializer
+
+
+class TaskView(viewsets.ModelViewSet):
+    queryset = Task.objects.select_related("team")
+    serializer_class = TaskSerializer
+
+    def get_serializer_class(self):
+        if self.action in (
+            "create", "update", "retrieve"
+        ):
+            return TaskDetailSerializer
+
+        return TaskSerializer
