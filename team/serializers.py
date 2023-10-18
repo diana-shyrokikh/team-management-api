@@ -104,19 +104,39 @@ class TaskDetailSerializer(TaskSerializer):
 
 
 class TeamDetailSerializer(TeamSerializer):
-    members = serializers.SlugRelatedField(
-        many=True,
-        read_only=False,
-        slug_field="email",
-        allow_null=True,
-        queryset=get_user_model().objects.all()
-    )
     tasks = serializers.SlugRelatedField(
         many=True,
         read_only=False,
         slug_field="name",
         allow_null=True,
         queryset=Task.objects.select_related("team")
+    )
+    members = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Team
+        fields = (
+            "id",
+            "name",
+            "type",
+            "leader",
+            "members",
+            "tasks",
+        )
+
+    @staticmethod
+    def get_members(obj):
+        members = obj.members.all()
+        return [member.get_full_name() for member in members]
+
+
+class TeamCreateUpdateSerializer(TeamDetailSerializer):
+    members = serializers.SlugRelatedField(
+        many=True,
+        read_only=False,
+        slug_field="email",
+        allow_null=True,
+        queryset=get_user_model().objects.all()
     )
 
     class Meta:
