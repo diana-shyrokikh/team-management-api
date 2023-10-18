@@ -48,7 +48,7 @@ class Task(models.Model):
     status = models.CharField(
         max_length=63,
         choices=TYPES,
-        default="In Progress"
+        default="Pending"
     )
     team = models.ForeignKey(
         to=Team,
