@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from team.models import Type
-from team_management.validators import validate_name
+from team.models import (
+    Type,
+    Team,
+)
+from team_management.validators import validate_name, validate_leader, validate_members
 
 
 class TypeSerializer(serializers.ModelSerializer):
@@ -20,3 +24,73 @@ class TypeSerializer(serializers.ModelSerializer):
         )
 
         return data
+
+
+class TeamSerializer(serializers.ModelSerializer):
+    type = serializers.SlugRelatedField(
+        many=False,
+        read_only=False,
+        slug_field="name",
+        allow_null=True,
+        queryset=Type.objects.all()
+
+    )
+    leader = serializers.SlugRelatedField(
+        many=False,
+        read_only=False,
+        slug_field="email",
+        allow_null=True,
+        queryset=get_user_model().objects.all()
+    )
+    members = serializers.SlugRelatedField(
+        many=True,
+        read_only=False,
+        slug_field="email",
+        allow_null=True,
+        queryset=get_user_model().objects.all()
+    )
+
+    class Meta:
+        model = Team
+        fields = (
+            "id",
+            "name",
+            "type",
+            "leader",
+            "members",
+        )
+
+    def validate(self, attrs):
+        data = super(
+            TeamSerializer, self
+        ).validate(attrs)
+
+        validate_name(
+            name=attrs["name"],
+            field_name="name"
+        )
+
+        if attrs["leader"]:
+            validate_leader(
+                leader=attrs["leader"]
+            )
+
+        if attrs["members"]:
+            validate_members(
+                members=attrs["members"]
+            )
+
+        return data
+
+    def update(self, instance, validated_data):
+        leader = validated_data.get("leader")
+
+        if not leader and instance.leader:
+            instance.leader.is_leader = False
+            instance.leader.save()
+
+        instance = super(
+            TeamSerializer, self
+        ).update(instance, validated_data)
+
+        return instance
