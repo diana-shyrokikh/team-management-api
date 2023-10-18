@@ -4,8 +4,13 @@ from rest_framework import serializers
 from team.models import (
     Type,
     Team,
+    Task,
 )
-from team_management.validators import validate_name, validate_leader, validate_members
+from team_management.validators import (
+    validate_name,
+    validate_leader,
+    validate_members,
+)
 
 
 class TypeSerializer(serializers.ModelSerializer):
@@ -94,3 +99,48 @@ class TeamSerializer(serializers.ModelSerializer):
         ).update(instance, validated_data)
 
         return instance
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    team = serializers.SlugRelatedField(
+        many=False,
+        read_only=False,
+        slug_field="name",
+        allow_null=True,
+        queryset=Team.objects.select_related(
+            "leader", "type"
+        ).prefetch_related("members")
+    )
+
+    class Meta:
+        model = Task
+        fields = (
+            "id",
+            "name",
+            "status",
+            "team",
+        )
+
+
+class TaskDetailSerializer(TaskSerializer):
+    class Meta:
+        model = Task
+        fields = (
+            "id",
+            "name",
+            "status",
+            "team",
+            "description"
+        )
+
+    def validate(self, attrs):
+        data = super(
+            TaskSerializer, self
+        ).validate(attrs)
+
+        validate_name(
+            name=attrs["name"],
+            field_name="name"
+        )
+
+        return data
