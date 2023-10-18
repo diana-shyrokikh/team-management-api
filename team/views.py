@@ -18,5 +18,5 @@ class TypeView(viewsets.ModelViewSet):
 class TeamView(viewsets.ModelViewSet):
     queryset = Team.objects.select_related(
         "leader", "type"
-    )
+    ).prefetch_related("members")
     serializer_class = TeamSerializer
