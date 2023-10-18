@@ -1,5 +1,6 @@
 import re
 
+from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ValidationError
 
 NAME_PATTERN = r"^[A-Za-z][A-Za-z0-9\s]*$"
@@ -11,9 +12,38 @@ def validate_name(
     if not re.search(NAME_PATTERN, name.strip()):
         raise ValidationError({
             f"{field_name}":
-                f"{field_name.upper()} should starts with letter "
+                f"The {field_name} should starts with letter "
                 f"and contain only letters, digits and space"
 
         })
 
     return name.strip()
+
+
+def validate_leader(
+        leader: get_user_model(),
+) -> get_user_model() | ValidationError:
+    if leader.team:
+        raise ValidationError({
+            f"leader":
+                f"The user cannot be the leader and "
+                f"a member of another team at the same time"
+
+        })
+
+    return leader
+
+
+def validate_members(
+        members: list[get_user_model()],
+) -> get_user_model() | ValidationError:
+    for member in members:
+        if member.is_leader:
+            raise ValidationError({
+                f"members":
+                    f"The {member.email} cannot be a team member "
+                    f"because the user is the leader of another team"
+
+            })
+
+    return members
