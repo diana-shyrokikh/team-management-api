@@ -10,6 +10,7 @@ from team.serializers import (
     TeamSerializer,
     TaskSerializer,
     TaskDetailSerializer,
+    TeamDetailSerializer,
 )
 
 
@@ -22,12 +23,16 @@ class TeamView(viewsets.ModelViewSet):
     queryset = Team.objects.select_related(
         "leader", "type"
     ).prefetch_related("members")
-    serializer_class = TeamSerializer
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return TeamSerializer
+
+        return TeamDetailSerializer
 
 
 class TaskView(viewsets.ModelViewSet):
     queryset = Task.objects.select_related("team")
-    serializer_class = TaskSerializer
 
     def get_serializer_class(self):
         if self.action in (
