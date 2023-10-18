@@ -62,12 +62,18 @@ class User(AbstractUser):
     )
     team = models.ForeignKey(
         "team.Team",
-        related_name="users",
+        related_name="members",
         on_delete=models.SET_NULL,
         null=True
+    )
+    is_leader = models.BooleanField(
+        default=False
     )
 
     objects = UserManager()
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
