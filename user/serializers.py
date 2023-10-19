@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from team.models import Team
 from team_management.validators import validate_user_name
 
 
@@ -50,14 +49,15 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class UserDetailUpdateSerializer(serializers.ModelSerializer):
+class UserDetailUpdateSerializer(UserSerializer):
     team = serializers.SlugRelatedField(
         many=False,
-        read_only=False,
+        read_only=True,
         slug_field="name",
         allow_null=True,
-        queryset=Team.objects.all()
     )
+    is_leader = serializers.CharField(read_only=True)
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = get_user_model()
@@ -67,7 +67,8 @@ class UserDetailUpdateSerializer(serializers.ModelSerializer):
             "last_name",
             "email",
             "team",
-            "is_leader"
+            "is_leader",
+            "password",
         )
 
 
