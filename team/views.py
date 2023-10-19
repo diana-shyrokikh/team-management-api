@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAdminUser
 
 from team.models import (
     Type,
@@ -17,12 +18,17 @@ from team_management.paginations import (
     TwentySizePagination,
     TenSizePagination,
 )
+from team_management.permissions import (
+    IsTeamMemberOrIsAdmin,
+    IsUsersTaskOrIsAdmin,
+)
 
 
 class TypeView(viewsets.ModelViewSet):
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
     pagination_class = TwentySizePagination
+    permission_classes = [IsAdminUser, ]
 
 
 class TeamView(viewsets.ModelViewSet):
@@ -30,6 +36,7 @@ class TeamView(viewsets.ModelViewSet):
         "leader", "type"
     ).prefetch_related("members", "tasks")
     pagination_class = TenSizePagination
+    permission_classes = [IsTeamMemberOrIsAdmin, ]
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -43,6 +50,7 @@ class TeamView(viewsets.ModelViewSet):
 class TaskView(viewsets.ModelViewSet):
     queryset = Task.objects.select_related("team")
     pagination_class = TenSizePagination
+    permission_classes = [IsUsersTaskOrIsAdmin, ]
 
     def get_serializer_class(self):
         if self.action in (
