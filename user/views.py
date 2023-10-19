@@ -30,7 +30,7 @@ class UserView(viewsets.ModelViewSet):
         return UserSerializer
 
 
-class UserMeView(generics.RetrieveAPIView):
+class UserMeView(generics.RetrieveUpdateAPIView):
     serializer_class = UserDetailUpdateSerializer
     permission_classes = [IsAuthenticated, ]
 
