@@ -13,17 +13,23 @@ from team.serializers import (
     TeamDetailSerializer,
     TeamCreateUpdateSerializer,
 )
+from team_management.paginations import (
+    TwentySizePagination,
+    TenSizePagination,
+)
 
 
 class TypeView(viewsets.ModelViewSet):
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
+    pagination_class = TwentySizePagination
 
 
 class TeamView(viewsets.ModelViewSet):
     queryset = Team.objects.select_related(
         "leader", "type"
     ).prefetch_related("members", "tasks")
+    pagination_class = TenSizePagination
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -36,6 +42,7 @@ class TeamView(viewsets.ModelViewSet):
 
 class TaskView(viewsets.ModelViewSet):
     queryset = Task.objects.select_related("team")
+    pagination_class = TenSizePagination
 
     def get_serializer_class(self):
         if self.action in (
