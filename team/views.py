@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
 
@@ -24,6 +25,7 @@ from team_management.permissions import (
 )
 
 
+@extend_schema(tags=["Type"])
 class TypeView(viewsets.ModelViewSet):
     queryset = Type.objects.all()
     serializer_class = TypeSerializer
@@ -31,6 +33,7 @@ class TypeView(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser, ]
 
 
+@extend_schema(tags=["Team"])
 class TeamView(viewsets.ModelViewSet):
     queryset = Team.objects.select_related(
         "leader", "type"
@@ -47,6 +50,7 @@ class TeamView(viewsets.ModelViewSet):
         return TeamDetailSerializer
 
 
+@extend_schema(tags=["Task"])
 class TaskView(viewsets.ModelViewSet):
     queryset = Task.objects.select_related("team")
     pagination_class = TenSizePagination
