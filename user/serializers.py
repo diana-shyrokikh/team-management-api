@@ -21,13 +21,13 @@ class UserSerializer(serializers.ModelSerializer):
             UserSerializer, self
         ).validate(attrs)
 
-        if attrs["first_name"]:
+        if attrs.get("first_name"):
             validate_user_name(
                 name=attrs["first_name"],
                 field_name="first_name"
             )
 
-        if attrs["last_name"]:
+        if attrs.get("last_name"):
             validate_user_name(
                 name=attrs["last_name"],
                 field_name="last_name"
