@@ -10,7 +10,7 @@ from team.models import (
 from team.serializers import TeamCreateUpdateSerializer
 
 
-class TeamSerializerTest(TestCase):
+class TeamSerializerTests(TestCase):
     def setUp(self):
         self.leader, created = get_user_model(
         ).objects.get_or_create(

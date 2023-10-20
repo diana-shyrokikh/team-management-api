@@ -9,7 +9,7 @@ from team.serializers import (
 )
 
 
-class TaskSerializerTestCase(TestCase):
+class TaskSerializerTests(TestCase):
     def setUp(self):
         self.type, created = Type.objects.get_or_create(
             name="Test Type"

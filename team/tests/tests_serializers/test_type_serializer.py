@@ -4,7 +4,7 @@ from team.models import Type
 from team.serializers import TypeSerializer
 
 
-class TypeSerializerTest(TestCase):
+class TypeSerializerTests(TestCase):
 
     def test_type_serializer_missing_name(self):
         data = {}
