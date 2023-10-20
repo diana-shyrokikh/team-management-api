@@ -13,17 +13,17 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path(
-        "api/doc/",
+        "api/v1/doc/",
         SpectacularAPIView.as_view(),
         name='doc'
     ),
     path(
-        "api/doc/swagger/",
+        "api/v1/doc/swagger/",
         SpectacularSwaggerView.as_view(url_name="doc"),
         name="swagger"
     ),
     path(
-        "api/schema/redoc/",
+        "api/v1/schema/redoc/",
         SpectacularRedocView.as_view(url_name="doc"),
         name="redoc"
     ),
