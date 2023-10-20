@@ -10,6 +10,21 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
     SpectacularRedocView,
 )
+from rest_framework.routers import DefaultRouter
+
+from team.views import (
+    TypeView,
+    TaskView,
+    TeamView,
+)
+from user.views import UserView
+
+router = DefaultRouter()
+
+router.register("types", TypeView)
+router.register("teams", TeamView)
+router.register("tasks", TaskView)
+router.register("users", UserView)
 
 urlpatterns = [
     path(
@@ -23,22 +38,24 @@ urlpatterns = [
         name="swagger"
     ),
     path(
-        "api/v1/schema/redoc/",
+        "api/v1/doc/redoc/",
         SpectacularRedocView.as_view(url_name="doc"),
         name="redoc"
     ),
 
-    path("__debug__/", include("debug_toolbar.urls")),
+    path(
+        "__debug__/",
+        include("debug_toolbar.urls")
+    ),
 
     path("admin/", admin.site.urls),
 
     path(
-        "api/v1/team/", include(
-            "team.urls", namespace="team"
-        ),
+        "api/v1/team-management/",
+        include(router.urls),
     ),
     path(
-        "api/v1/user/", include(
+        "api/v1/team-management/users/", include(
             "user.urls", namespace="user"
         ),
     ),
