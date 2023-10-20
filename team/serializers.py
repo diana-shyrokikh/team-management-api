@@ -45,7 +45,9 @@ class TeamSerializer(serializers.ModelSerializer):
         read_only=False,
         slug_field="email",
         allow_null=True,
-        queryset=get_user_model().objects.all()
+        queryset=get_user_model().objects.select_related(
+            "team"
+        )
     )
 
     class Meta:
@@ -165,13 +167,13 @@ class TeamCreateUpdateSerializer(TeamDetailSerializer):
             field_name="name"
         )
 
-        if attrs["leader"]:
+        if attrs.get("leader"):
             validate_leader(
                 leader=attrs["leader"],
                 team_name=name,
             )
 
-        if attrs["members"]:
+        if attrs.get("members"):
             validate_members(
                 members=attrs["members"],
                 team_name=name,
@@ -181,8 +183,6 @@ class TeamCreateUpdateSerializer(TeamDetailSerializer):
 
     def update(self, instance, validated_data):
         leader = validated_data.get("leader")
-        tasks_data = validated_data.pop("tasks", None)
-        members_data = validated_data.pop("members", None)
 
         if (
             not leader and instance.leader
@@ -202,30 +202,27 @@ class TeamCreateUpdateSerializer(TeamDetailSerializer):
             leader.is_leader = True
             leader.team = instance
             leader.save()
-
-        if members_data:
-            instance.members.set(members_data)
-
-        if tasks_data:
-            instance.tasks.set(tasks_data)
+            instance.members.add(leader)
+            instance.save()
 
         return instance
 
     def create(self, validated_data):
-        leader_data = validated_data.get("leader")
-        members_data = validated_data.pop("members", None)
-        tasks_data = validated_data.pop("tasks", None)
+        leader_data = validated_data.pop("leader", None)
+        members_data = validated_data.pop("members", [])
+        tasks_data = validated_data.pop("tasks", [])
         team = Team.objects.create(**validated_data)
 
         if leader_data:
+            team.leader = leader_data
             leader_data.is_leader = True
             leader_data.team = team
+
             leader_data.save()
+            members_data.append(leader_data)
 
-        if members_data:
-            team.members.set(members_data)
-
-        if tasks_data:
-            team.tasks.set(tasks_data)
+        team.members.set(members_data)
+        team.tasks.set(tasks_data)
+        team.save()
 
         return team
