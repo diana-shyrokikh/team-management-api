@@ -14,6 +14,7 @@ from team.serializers import (
     TaskDetailSerializer,
     TeamDetailSerializer,
     TeamCreateUpdateSerializer,
+    TypeDetailSerializer,
 )
 from team_management.paginations import (
     TwentySizePagination,
@@ -31,6 +32,12 @@ class TypeView(viewsets.ModelViewSet):
     serializer_class = TypeSerializer
     pagination_class = TwentySizePagination
     permission_classes = [IsAdminUser, ]
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return TypeDetailSerializer
+
+        return TypeSerializer
 
 
 @extend_schema(tags=["Team"])
