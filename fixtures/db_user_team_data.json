@@ -1,0 +1,366 @@
+[
+{
+  "model": "team.type",
+  "pk": 7,
+  "fields": {
+    "name": "Type 1"
+  }
+},
+{
+  "model": "team.type",
+  "pk": 8,
+  "fields": {
+    "name": "Type 2"
+  }
+},
+{
+  "model": "team.type",
+  "pk": 9,
+  "fields": {
+    "name": "Type 3"
+  }
+},
+{
+  "model": "team.type",
+  "pk": 10,
+  "fields": {
+    "name": "Type 4"
+  }
+},
+{
+  "model": "team.type",
+  "pk": 11,
+  "fields": {
+    "name": "Type 5"
+  }
+},
+{
+  "model": "team.type",
+  "pk": 12,
+  "fields": {
+    "name": "Type 6"
+  }
+},
+{
+  "model": "team.type",
+  "pk": 13,
+  "fields": {
+    "name": "Type 7"
+  }
+},
+{
+  "model": "team.team",
+  "pk": 27,
+  "fields": {
+    "name": "Alpha",
+    "type": 7,
+    "leader": 9
+  }
+},
+{
+  "model": "team.team",
+  "pk": 28,
+  "fields": {
+    "name": "Bravo",
+    "type": 8,
+    "leader": 12
+  }
+},
+{
+  "model": "team.team",
+  "pk": 29,
+  "fields": {
+    "name": "Charlie",
+    "type": 9,
+    "leader": 14
+  }
+},
+{
+  "model": "team.team",
+  "pk": 30,
+  "fields": {
+    "name": "Delta",
+    "type": 10,
+    "leader": null
+  }
+},
+{
+  "model": "team.team",
+  "pk": 31,
+  "fields": {
+    "name": "Echo",
+    "type": 11,
+    "leader": null
+  }
+},
+{
+  "model": "team.team",
+  "pk": 32,
+  "fields": {
+    "name": "Foxtrot",
+    "type": 12,
+    "leader": null
+  }
+},
+{
+  "model": "team.team",
+  "pk": 33,
+  "fields": {
+    "name": "Golf",
+    "type": null,
+    "leader": null
+  }
+},
+{
+  "model": "team.team",
+  "pk": 34,
+  "fields": {
+    "name": "Hotel",
+    "type": null,
+    "leader": null
+  }
+},
+{
+  "model": "team.task",
+  "pk": 7,
+  "fields": {
+    "name": "Optimized impactful toolset",
+    "description": "'Discussion staff provide no third. Less buy network study house. Eye husband girl black official program everybody.\\nAccept into face kitchen. Something past difficult since big eight.'",
+    "status": "Pending",
+    "team": 27
+  }
+},
+{
+  "model": "team.task",
+  "pk": 8,
+  "fields": {
+    "name": "Seamless upward-trending knowledgebase",
+    "description": "Network much alone kid. Break fine floor knowledge class. Pressure election among born job.\\nWhere ago machine lot compare. Else air wish short trouble during. Quickly three address way good deal.",
+    "status": "Pending",
+    "team": 27
+  }
+},
+{
+  "model": "team.task",
+  "pk": 9,
+  "fields": {
+    "name": "Ergonomic explicit secured line",
+    "description": "Into maybe guess mean stand. Bring cut imagine government significant. Eat there point nature.\\nRate somebody southern help.",
+    "status": "Pending",
+    "team": 27
+  }
+},
+{
+  "model": "team.task",
+  "pk": 10,
+  "fields": {
+    "name": "Diverse even-keeled encoding",
+    "description": "Ok process task than task speech. Home answer industry ten. Charge and peace wide. Before scientist say.\\nIdentify western want ground national nearly. Audience market senior until guess agent take.",
+    "status": "Pending",
+    "team": 28
+  }
+},
+{
+  "model": "team.task",
+  "pk": 11,
+  "fields": {
+    "name": "Persistent mobile forecast",
+    "description": "Response stop picture experience. Happy blue determine crime.\\nConsider a carry message could yard. Factor light talk.",
+    "status": "Pending",
+    "team": 28
+  }
+},
+{
+  "model": "team.task",
+  "pk": 12,
+  "fields": {
+    "name": "Inverse neutral time-frame",
+    "description": "Total final weight early daughter interest think. Federal else audience later still building what.",
+    "status": "Pending",
+    "team": 28
+  }
+},
+{
+  "model": "team.task",
+  "pk": 13,
+  "fields": {
+    "name": "Exclusive hybrid info-mediaries",
+    "description": "Democrat nature activity probably interesting least. Significant stock ball key more.\\nLittle pressure know challenge deep cover specific head. Art north simply. Act trouble tonight answer fight live.",
+    "status": "Pending",
+    "team": 28
+  }
+},
+{
+  "model": "team.task",
+  "pk": 14,
+  "fields": {
+    "name": "Horizontal human-resource framework",
+    "description": "Hot point whatever old free place conference happy. Suffer prepare usually number.\\nMiddle major represent move in music report available. General young our study imagine else.",
+    "status": "Pending",
+    "team": 28
+  }
+},
+{
+  "model": "team.task",
+  "pk": 15,
+  "fields": {
+    "name": "Fundamental holistic migration",
+    "description": "Many since management expert under health person. Difficult wear film culture.\\nOff travel factor watch local crime. Miss indeed make talk.",
+    "status": "Pending",
+    "team": 29
+  }
+},
+{
+  "model": "team.task",
+  "pk": 16,
+  "fields": {
+    "name": "Mandatory solution-oriented application",
+    "description": "Table another full. Majority at total instead learn dark.\\nMiddle offer real police attorney but. Fight answer oil will data. Mission memory staff measure make.",
+    "status": "Pending",
+    "team": 30
+  }
+},
+{
+  "model": "team.task",
+  "pk": 17,
+  "fields": {
+    "name": "Cross-platform asynchronous knowledge user",
+    "description": "Record late smile trade. Five thing young also minute.\\nFather field budget view worry eat onto. Glass door long water author.",
+    "status": "Pending",
+    "team": 30
+  }
+},
+{
+  "model": "user.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$fZTpdAmwUjsDR1kZZSIYla$SP5qAFUI0zheNYLHi5/Q6z3fSo7TZm7SG5ridK2+J6o=",
+    "last_login": null,
+    "is_superuser": true,
+    "first_name": "Admin",
+    "last_name": "Adminenko",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:34:51.497Z",
+    "email": "admin@admin.com",
+    "team": 27,
+    "is_leader": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$IRI9fRqDX9gqqd3ddx3a8J$VMwg0StPmXc4t+56ibEahH3iRZgWUNaIFJdAlvHEojs=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Jenna",
+    "last_name": "Richmond",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:47:15.733Z",
+    "email": "ericajohnson@example.net",
+    "team": 27,
+    "is_leader": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$00a9OBOTfOSQFeGTUPdgSo$vBh3EdfdvNm6WRoG1gzK3ZCW8DQVKdzlhXh6EyXJrpg=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Christina",
+    "last_name": "Miller",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:48:05.244Z",
+    "email": "garyschneider@example.net",
+    "team": 27,
+    "is_leader": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$PyZ5eR8EZnR9i4uZwOj7tu$vgukB7VMPjJT/EF11IQDJiqtv5T43IRka6kUrGVhH/U=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Francisco",
+    "last_name": "Harris",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:48:38.308Z",
+    "email": "timothy65@example.net",
+    "team": 28,
+    "is_leader": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$QuQu0ZJFcgRAUKITmX6tKF$uBzhQdAcOUB/Dkwajn9eGJ6UrVSsl/YCGcllAnWUZ4E=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Sydney",
+    "last_name": "Graves",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:49:06.674Z",
+    "email": "curtistaylor@example.net",
+    "team": 28,
+    "is_leader": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$fUz5AppXVRPro8t5uaqtfW$52jhZdmEBxonjhrxBTiSkeU0RUfE1OHxUHf/e7SksJE=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Bianca",
+    "last_name": "Byrd",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:49:34.952Z",
+    "email": "adam13@example.net",
+    "team": 29,
+    "is_leader": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$j5AoOYCagzNUO39BZkWJkY$6pjV7LRpwUIMtobL/Z2KMnZO3DgV38ShiWK056tpzO4=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "Guy",
+    "last_name": "Jacobs",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-20T10:50:11.558Z",
+    "email": "wrush@example.net",
+    "team": 30,
+    "is_leader": false,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
