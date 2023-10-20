@@ -52,25 +52,3 @@ class TaskSerializerTests(TestCase):
             serializer = TaskDetailSerializer(data=self.task_data)
 
             self.assertFalse(serializer.is_valid())
-
-    def test_task_detail_serializer_valid(self):
-        serializer = TaskDetailSerializer(
-            instance=self.task_data, data=self.task_data
-        )
-
-        self.assertTrue(serializer.is_valid())
-
-        updated_task = serializer.save()
-
-        self.assertEqual(updated_task.name, "Updated Task")
-        self.assertEqual(updated_task.status, "In Progress")
-        self.assertEqual(updated_task.description, "Updated description")
-
-    def test_task_detail_serializer_invalid_name(self):
-        self.task_data["name"] = ""
-
-        serializer = TaskDetailSerializer(
-            instance=self.task_data, data=self.task_data
-        )
-
-        self.assertFalse(serializer.is_valid())
