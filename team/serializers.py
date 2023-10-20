@@ -31,6 +31,23 @@ class TypeSerializer(serializers.ModelSerializer):
         return data
 
 
+class TypeDetailSerializer(serializers.ModelSerializer):
+    teams = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field="name",
+        allow_null=True,
+    )
+
+    class Meta:
+        model = Type
+        fields = (
+            "id",
+            "name",
+            "teams",
+        )
+
+
 class TeamSerializer(serializers.ModelSerializer):
     type = serializers.SlugRelatedField(
         many=False,
