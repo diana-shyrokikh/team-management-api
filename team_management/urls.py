@@ -17,7 +17,13 @@ from team.views import (
     TaskView,
     TeamView,
 )
-from user.views import UserView
+from user.views import (
+    UserView,
+    UserMeView,
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 router = DefaultRouter()
 
@@ -54,9 +60,28 @@ urlpatterns = [
         "api/v1/team-management/",
         include(router.urls),
     ),
+
     path(
-        "api/v1/team-management/users/", include(
-            "user.urls", namespace="user"
+        "api/v1/team-management/me/",
+        UserMeView.as_view(),
+        name="user_me"
+    ),
+
+    path(
+        "api/v1/team-management/token/",
+        TokenObtainPairView.as_view(),
+        name="token_obtain_pair"
+    ),
+    path(
+        "api/v1/team-management/token/refresh/",
+        TokenRefreshView.as_view(),
+        name="token_refresh"
+    ),
+
+    path(
+        "api/v1/team-management/google_auth/", include(
+            "google_api_auth.urls",
+            namespace="google_auth_api"
         ),
     ),
 ] + static(

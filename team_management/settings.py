@@ -31,12 +31,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "rest_framework",
     "debug_toolbar",
     "rest_framework_simplejwt",
     "drf_spectacular",
+
     "team",
     "user",
+    "google_api_auth",
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,11 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+GOOGLE_OAUTH2_CLIENT_ID = os.getenv("GOOGLE_OAUTH2_CLIENT_ID")
+GOOGLE_OAUTH2_CLIENT_SECRET = os.getenv("GOOGLE_OAUTH2_CLIENT_SECRET")
+GOOGLE_OAUTH2_PROJECT_ID = os.getenv("GOOGLE_OAUTH2_PROJECT_ID")
+
+BASE_BACKEND_URL = "http://localhost:8000"
+
+DEFAULT_USER_PASSWORD = os.getenv("DEFAULT_USER_PASSWORD")
