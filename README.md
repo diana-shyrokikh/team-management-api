@@ -37,6 +37,8 @@ It offers a wide range of features to manage teams, track member activities, and
   - staff required for not safe methods
   - team/task detail page is allowed only to related users
 - JWT authentication
+  - with email and password
+  - with Google account
 - Manage user accounts
   - staff required for create new user
   - user is able to change their profile <br>
@@ -95,8 +97,9 @@ docker-compose up
 ### API
 1. Team Management API is accessible at `http://localhost:8000/api/v1/team-management/`
 2. The Detailed Page for a specific resource is available at `http://localhost:8000/api/v1/team-management/<resource_name>/<id>/`
-4. The Token Obtain Pair Page is accessible at `http://localhost:8000/api/v1/team-management/users/token/`
-5. Token Refresh Page is accessible at `http://localhost:8000/api/v1/team-management/users/token/refresh/`
+3. The Google Authorization Page is accessible at `http://localhost:8000/api/v1/team-management/google_auth/`
+4. The Token Obtain Pair Page is accessible at `http://localhost:8000/api/v1/team-management/token/`
+5. Token Refresh Page is accessible at `http://localhost:8000/api/v1/team-management/token/refresh/`
 6. Django Admin Page is accessible at `http://localhost:8000/admin/`
 
 <br>
